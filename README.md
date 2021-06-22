@@ -28,6 +28,14 @@ You can check live demo at: [https://dishform.netlify.app/](https://dishform.net
 
 or run this project, install it locally using npm:
 
+Firstly, copy this repository
+
+```
+$ git clone https://github.com/OskarJankowiak/form-materialui.git
+```
+
+then provide followings commands to your terminal
+
 ```
 $ cd ../form-materialui
 $ npm install

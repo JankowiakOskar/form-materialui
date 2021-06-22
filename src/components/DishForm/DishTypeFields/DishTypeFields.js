@@ -164,7 +164,7 @@ DishTypeFields.propTypes = {
 		diameter: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		spiciness_scale: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		slices_of_bread: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	}),
+	}).isRequired,
 	selectedTypeDish: PropTypes.oneOf([
 		dishType.pizza,
 		dishType.sandwich,

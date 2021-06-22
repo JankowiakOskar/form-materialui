@@ -58,7 +58,7 @@ const DishForm = () => {
 
 	return (
 		<Wrapper>
-			<h2>Order a dish</h2>
+			<h2>Let's order a dish</h2>
 			<FormProvider {...methods}>
 				<Form onSubmit={handleSubmit(submitData)} noValidate>
 					<Controller
