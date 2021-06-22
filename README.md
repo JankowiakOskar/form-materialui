@@ -2,6 +2,7 @@
 
 React project which allows you prepare order depends on kind of meal you wanna eat.
 Type name order, time preparation and provide special requriments for your dish.
+After preparation you would be able to send order to external API with dishes.
 
 ## Node
 
@@ -23,7 +24,7 @@ Project is created with:
 
 ## Launch 🚀
 
-You can check live demo at:
+You can check live demo at: [https://dishform.netlify.app/](https://dishform.netlify.app/)
 
 or run this project, install it locally using npm:
 
@@ -41,4 +42,12 @@ If you want to build production ready optimalized version of this app, on the ro
 $ npm build
 ```
 
-Now app should be prepared in `build` folder
+Now app should be prepared in `build` folder, ready and optimalized to deploy!
+
+You can serve it in your browser locally by using command:
+
+```
+$ serve -s build
+```
+
+After typing command puted above project is ready to watch, provide in your browser adress [http://localhost:5000](http://localhost:5000).
