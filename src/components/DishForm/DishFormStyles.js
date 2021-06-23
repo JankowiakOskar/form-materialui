@@ -3,10 +3,6 @@ import { Button } from "@material-ui/core";
 
 export const Wrapper = styled.div`
 	width: 300px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
 `;
 
 export const Form = styled.form`
@@ -14,13 +10,19 @@ export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	row-gap: 20px;
+
+	& > div {
+		margin: 14px 0;
+	}
 `;
 
 export const NotificationWrapper = styled.div`
-	margin-top: 20px;
+	margin: 20px 0 0;
 `;
 
 export const StyledButton = styled(Button)`
-	align-self: flex-end;
+	&& {
+		margin: 10px 0 0 0;
+		align-self: flex-end;
+	}
 `;

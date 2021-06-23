@@ -4,6 +4,7 @@ import { API_URL } from "../../services/api";
 import {
 	dishType,
 	formatSeconds,
+	hasTimeMoreThanZero,
 	parseValuesToNums,
 } from "../../utils/orderUtils";
 import {
@@ -43,7 +44,7 @@ const DishForm = () => {
 	const { sendOrder, setIdleOrder, isOrdering, isSubmittedOrder, orderError } =
 		useOrder(API_URL);
 
-	const { control, handleSubmit, watch, reset } = methods;
+	const { control, handleSubmit, watch, reset, getValues } = methods;
 
 	const watchSelectedDish = watch("type");
 
@@ -79,16 +80,25 @@ const DishForm = () => {
 					<Controller
 						name="preparation_time"
 						control={control}
-						rules={{ required: "Please provide preparation time" }}
-						render={({ field: { value, onChange } }) => (
+						rules={{
+							validate: () => {
+								const currSelectedTime = getValues("preparation_time");
+								return hasTimeMoreThanZero(currSelectedTime)
+									? true
+									: "Preparation time is required";
+							},
+						}}
+						render={({ field: { value, onChange }, fieldState: { error } }) => (
 							<TextField
 								value={value}
 								onChange={(e) => {
 									const formatedTime = formatSeconds(e.target.value);
 									onChange(formatedTime);
 								}}
+								error={Boolean(error?.message)}
 								label="Preparation time"
 								variant="outlined"
+								helperText={error?.message}
 								inputProps={{ type: "time", step: "1" }}
 							/>
 						)}

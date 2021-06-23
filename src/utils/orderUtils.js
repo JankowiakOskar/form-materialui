@@ -4,8 +4,8 @@ export const dishType = {
 	sandwich: "sandwich",
 };
 
-
-export const hasTimeMoreThanZero = (timeStr) => timeStr.split(':').some(val => val > 0);
+export const hasTimeMoreThanZero = (timeStr) =>
+	timeStr.split(":").some((val) => +val > 0);
 
 export const formatSeconds = (timeStr) => {
 	const defaultTimeStr = "00:00:00";
