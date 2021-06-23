@@ -23,10 +23,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                   }}
                   shouldUnregister
                   defaultValue={defaultValues.no_of_slices}
-                  render={({
-                    field: { value, onChange },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { value, onChange }, fieldState: { error } }) => (
                     <TextField
                       value={value ? value : ''}
                       onChange={onChange}
@@ -58,10 +55,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                   }}
                   shouldUnregister
                   defaultValue={defaultValues.diameter}
-                  render={({
-                    field: { value, onChange },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { value, onChange }, fieldState: { error } }) => (
                     <TextField
                       value={value ? value : ''}
                       onChange={onChange}
@@ -74,11 +68,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                         max: 60,
                         step: '0.1',
                       }}
-                      helperText={
-                        error?.message
-                          ? error?.message
-                          : 'Available diameters 30-60'
-                      }
+                      helperText={error?.message ? error?.message : 'Available diameters 30-60'}
                     />
                   )}
                 />
@@ -96,10 +86,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                 }}
                 defaultValue={defaultValues.spiciness_scale}
                 shouldUnregister
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
+                render={({ field: { value, onChange }, fieldState: { error } }) => (
                   <TextField
                     value={value ? value : ''}
                     onChange={onChange}
@@ -111,9 +98,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                       min: 1,
                       max: 10,
                     }}
-                    helperText={
-                      error?.message ? error.message : 'Choose scale 1-10'
-                    }
+                    helperText={error?.message ? error.message : 'Choose scale 1-10'}
                   />
                 )}
               />
@@ -129,10 +114,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                 }}
                 defaultValue={defaultValues.slices_of_bread}
                 shouldUnregister
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
+                render={({ field: { value, onChange }, fieldState: { error } }) => (
                   <TextField
                     value={value ? value : ''}
                     onChange={onChange}
@@ -143,9 +125,7 @@ const DishTypeFields = ({ defaultValues, selectedTypeDish }) => {
                     inputProps={{
                       min: 1,
                     }}
-                    helperText={
-                      error?.message ? error.message : 'Type num of slices'
-                    }
+                    helperText={error?.message ? error.message : 'Type num of slices'}
                   />
                 )}
               />
@@ -165,12 +145,7 @@ DishTypeFields.propTypes = {
     spiciness_scale: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     slices_of_bread: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
-  selectedTypeDish: PropTypes.oneOf([
-    dishType.pizza,
-    dishType.sandwich,
-    dishType.soup,
-    '',
-  ]).isRequired,
+  selectedTypeDish: PropTypes.oneOf([dishType.pizza, dishType.sandwich, dishType.soup, '']).isRequired,
 };
 
 export default DishTypeFields;

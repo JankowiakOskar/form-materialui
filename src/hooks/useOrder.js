@@ -42,8 +42,7 @@ export const useOrder = (url) => {
     orders: [],
     error: null,
   });
-  const isSubmittedOrder =
-    state.status !== 'idle' && state.status !== 'pending';
+  const isSubmittedOrder = state.status !== 'idle' && state.status !== 'pending';
 
   const sendOrder = useCallback(
     async (orderData) => {

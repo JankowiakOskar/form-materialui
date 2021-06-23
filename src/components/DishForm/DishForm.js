@@ -1,29 +1,12 @@
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 import { useOrder } from '../../hooks/useOrder';
 import { API_URL } from '../../services/api';
-import {
-  dishType,
-  formatSeconds,
-  hasTimeMoreThanZero,
-  parseValuesToNums,
-} from '../../utils/orderUtils';
-import {
-  TextField,
-  FormControl,
-  FormHelperText,
-  Select,
-  InputLabel,
-  MenuItem,
-} from '@material-ui/core';
+import { dishType, formatSeconds, hasTimeMoreThanZero, parseValuesToNums } from '../../utils/orderUtils';
+import { TextField, FormControl, FormHelperText, Select, InputLabel, MenuItem } from '@material-ui/core';
 import DishTypeFields from './DishTypeFields/DishTypeFields';
 import Notification from '../Notification/Notification';
 import Loader from '../../components/Loader/Loader';
-import {
-  Wrapper,
-  Form,
-  NotificationWrapper,
-  StyledButton,
-} from './DishFormStyles';
+import { Wrapper, Form, NotificationWrapper, StyledButton } from './DishFormStyles';
 
 const defaultConditionalValues = {
   no_of_slices: 6,
@@ -41,18 +24,14 @@ const defaultInitValues = {
 const DishForm = () => {
   const methods = useForm({ defaultValues: defaultInitValues });
 
-  const { sendOrder, setIdleOrder, isOrdering, isSubmittedOrder, orderError } =
-    useOrder(API_URL);
+  const { sendOrder, setIdleOrder, isOrdering, isSubmittedOrder, orderError } = useOrder(API_URL);
 
   const { control, handleSubmit, watch, reset, getValues } = methods;
 
   const watchSelectedDish = watch('type');
 
   const submitData = async (data) => {
-    const formatedData = parseValuesToNums(
-      data,
-      Object.keys(defaultConditionalValues),
-    );
+    const formatedData = parseValuesToNums(data, Object.keys(defaultConditionalValues));
     await sendOrder(formatedData);
     reset(defaultInitValues);
   };
@@ -67,14 +46,7 @@ const DishForm = () => {
             control={control}
             rules={{ required: 'Please provide dish name' }}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <TextField
-                value={value}
-                onChange={onChange}
-                error={Boolean(error?.message)}
-                label="Dish name"
-                variant="outlined"
-                helperText={error?.message}
-              />
+              <TextField value={value} onChange={onChange} error={Boolean(error?.message)} label="Dish name" variant="outlined" helperText={error?.message} />
             )}
           />
           <Controller
@@ -83,9 +55,7 @@ const DishForm = () => {
             rules={{
               validate: () => {
                 const currSelectedTime = getValues('preparation_time');
-                return hasTimeMoreThanZero(currSelectedTime)
-                  ? true
-                  : 'Preparation time is required';
+                return hasTimeMoreThanZero(currSelectedTime) ? true : 'Preparation time is required';
               },
             }}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
@@ -110,26 +80,16 @@ const DishForm = () => {
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <FormControl error={Boolean(error?.message)} variant="filled">
                 <InputLabel id="labelSelect">Dish type</InputLabel>
-                <Select
-                  value={value}
-                  onChange={onChange}
-                  labelId="labelSelect"
-                  label="Dish type"
-                >
+                <Select value={value} onChange={onChange} labelId="labelSelect" label="Dish type">
                   <MenuItem value={dishType.pizza}>Pizza</MenuItem>
                   <MenuItem value={dishType.soup}>Soup</MenuItem>
                   <MenuItem value={dishType.sandwich}>Sandwich</MenuItem>
                 </Select>
-                {error?.message && (
-                  <FormHelperText>{error.message}</FormHelperText>
-                )}
+                {error?.message && <FormHelperText>{error.message}</FormHelperText>}
               </FormControl>
             )}
           />
-          <DishTypeFields
-            defaultValues={defaultConditionalValues}
-            selectedTypeDish={watchSelectedDish}
-          />
+          <DishTypeFields defaultValues={defaultConditionalValues} selectedTypeDish={watchSelectedDish} />
           <StyledButton variant="contained" color="primary" type="submit">
             {isOrdering ? <Loader /> : 'Send order'}
           </StyledButton>
